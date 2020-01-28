@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_button_off"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_button_off"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ToolBarStyle">
+
+            <TextView
+                android:id="@+id/toolbar_title_device_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                android:text="@string/title_input"
+                android:textColor="@color/color_text"
+                android:textSize="17dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/title_under_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"></View>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/input_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/input_description"
+        android:textAlignment="center"
+        android:textColor="@color/color_text"
+        android:textSize="16dp"
+        android:textStyle="bold"></TextView>
+
+    <LinearLayout
+        android:id="@+id/input_linear_height"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/input_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="@string/input_height"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="16dp"></TextView>
+
+        <EditText
+            android:id="@+id/height"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_edit_text"
+            android:textSize="22dp"></EditText>
+
+        <TextView
+            android:id="@+id/input_cm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/cm"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="16dp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/input_linear_weight"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/input_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="@string/input_weight"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="16dp"></TextView>
+
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_edit_text"
+            android:textSize="22dp"></EditText>
+
+        <TextView
+            android:id="@+id/input_kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/kg"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="16dp"></TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/input_calc_button"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_button"
+        android:text="@string/input_calc_button"
+        android:textSize="22dp"></Button>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/color_line"></View>
+
+    <LinearLayout
+        android:id="@+id/input_linear_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/input_result_message_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/result_message_1"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:id="@+id/result_bmi"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/input_result_message_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/result_message_2"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="20dp"></TextView>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/result_message_free"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_edit_text"
+        android:hint="@string/hint_message"
+        android:textColorHint="@color/color_line"
+        android:textSize="16dp"></EditText>
+
+    <LinearLayout
+        android:id="@+id/input_linear_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="2">
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button"
+            android:text="@string/delete"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></Button>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button"
+            android:text="@string/save"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/delete_button"></Button>
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

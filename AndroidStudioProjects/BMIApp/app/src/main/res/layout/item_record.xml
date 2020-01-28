@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_button_off">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/title_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_record_title"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_text"
+            android:textSize="14dp"
+            android:visibility="gone"></TextView>
+
+
+        <View
+            android:id="@+id/title_under_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"
+            android:visibility="gone"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:textColor="@color/color_text"
+                android:textSize="18dp"></TextView>
+
+            <TextView
+                android:id="@+id/text_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:textAlignment="center"
+                android:textColor="@color/color_text"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/text_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:textAlignment="center"
+                android:textColor="@color/color_text"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/text_bmi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:textAlignment="center"
+                android:textColor="@color/color_text"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:textColor="@color/color_line"
+            android:textSize="14dp"
+            android:visibility="gone"></TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"></View>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,34 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- ツールバーの色 -->
+        <item name="colorPrimary">@color/color_text</item>
+        <!-- ステータスバーの色 -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- 用途不明 -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- ToolBarのタイトルテキスト色 -->
+        <item name="android:textColorPrimary">@color/color_text</item>
+        <!-- ボトムナビゲーションバーのアイコンの色 -->
+        <item name="android:textColorSecondary">@color/color_text</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
+
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="actionMenuTextColor">@color/color_button_off</item>
+    </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- ToolBarのタイトルテキスト色 -->
+        <item name="android:textColorPrimary">@color/color_button_off</item>
+        <!-- iconの色 -->
+        <item name="colorControlNormal">@color/color_button_off</item>
+    </style>
+</resources>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BMIApp</string>
+    <string name="title_input">入力</string>
+    <string name="title_record">履歴</string>
+    <string name="input_description">身長と体重を入力してください</string>
+    <string name="input_height">身長</string>
+    <string name="input_weight">体重</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string name="input_calc_button">BMIを計算する</string>
+    <string name="result_message_1">あなたのBMIは</string>
+    <string name="result_message_2">でした</string>
+    <string name="delete">削除</string>
+    <string name="save">保存する</string>
+    <string name="hint_message">言い訳を書きたければ書いてください</string>
+    <string name="error_01">身長または体重を入力してください</string>
+    <string name="error_02">身長または体重は小数点第一位以内で入力してください</string>
+    <string name="record_height">身長：</string>
+    <string name="record_weight">体重：</string>
+    <string name="record_bmi">BMI：</string>
+    <string name="record_day">日</string>
+    <string name="record_month">月</string>
+</resources>
