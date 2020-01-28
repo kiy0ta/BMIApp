@@ -122,11 +122,6 @@ class InputFragment : Fragment() {
                 strToday,
                 strToday + "," + (height.text).toString() + "," + (weight.text).toString() + "," + bmi + "," + message + "," + "first"
             )
-            //TODO:テストデータ
-//            editor.putString(
-//                "20200204",
-//                "20200204" + "," + (height.text).toString() + "," + (weight.text).toString() + "," + bmi + "," + message + "," + "notFirst"
-//            )
         } else {
             editor.putString(
                 strToday,
@@ -175,8 +170,6 @@ class InputFragment : Fragment() {
     private fun isFirst() {
         var today = Date()
         var sdf = SimpleDateFormat("yyyyMMdd")
-        //TODO:テストデータ
-//        strToday = "20200303"
         strToday = sdf.format(today)
         for (date in keyList) {
             //同日のデータが存在する場合
@@ -194,20 +187,13 @@ class InputFragment : Fragment() {
         var today = Date()
         var sdf = SimpleDateFormat("yyyyMM")
         var sToday = sdf.format(today)
-        Log.d("loglog", "today:" + sToday)
         val regex = Regex(sToday)
-        Log.d("loglog", "regex:" + regex)
-        //TODO:keyListをkeyのみにする？
-        //TODO:もしくは、containを使う？
         for (date in keyList) {
-            Log.d("loglog", "date:" + date)
             //同月のデータが存在しない場合
-            if (!date.matches(regex)) {
-                Log.d("loglog", "!date.matches(regex):" + true)
+            if (!date.contains(regex)) {
                 isFirstDataOfMonth = true
             }
         }
-        Log.d("loglog", "isFirstDataOfMonth:" + isFirstDataOfMonth)
         return isFirstDataOfMonth
     }
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -58,7 +57,6 @@ class RecycleViewAdapter(
             it.itemWeightTextView.text =
                 res.getString(R.string.record_weight) + itemList[2] + res.getString(R.string.kg)
             it.itemBmiTextView.text = res.getString(R.string.record_bmi) + itemList[3]
-            //TODO:messageの処理、デフォルトによっては変更を検討する
             if (itemList[4] != "") {
                 it.itemMessageTextView.visibility = VISIBLE
                 it.itemMessageTextView.text = itemList[4]

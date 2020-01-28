@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_button_off">
+    android:background="@color/color_white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@color/color_record_title"
             android:paddingLeft="30dp"
-            android:textColor="@color/color_text"
+            android:textColor="@color/color_black"
             android:textSize="14dp"
             android:visibility="gone"></TextView>
 
@@ -28,7 +28,7 @@
             android:id="@+id/title_under_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_line"
+            android:background="@color/color_gray"
             android:visibility="gone"></View>
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:textAlignment="center"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_black"
                 android:textSize="18dp"></TextView>
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:textAlignment="center"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_black"
                 android:textSize="14dp"></TextView>
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:textAlignment="center"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_black"
                 android:textSize="14dp"></TextView>
 
             <TextView
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:textAlignment="center"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_black"
                 android:textSize="14dp"></TextView>
 
         </LinearLayout>
@@ -82,14 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="26dp"
-            android:textColor="@color/color_line"
+            android:textColor="@color/color_gray"
             android:textSize="14dp"
             android:visibility="gone"></TextView>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_line"></View>
+            android:background="@color/color_gray"></View>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
