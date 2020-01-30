@@ -1,11 +1,10 @@
 package com.example.bmiapp
 
 import android.os.Bundle
-import android.util.Log
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bmiapp.ui.input.InputFragment
 import com.example.bmiapp.ui.record.RecordFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        var res = resources
+        val res = resources
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_input -> {
