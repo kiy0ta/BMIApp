@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.bmiapp.ui.record
 
 import android.annotation.SuppressLint
@@ -29,8 +27,8 @@ class RecycleViewAdapter(
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     var res: Resources = context!!.resources
-    private var sharedPreferences: SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
+    private var sharedPreferences =
+        context?.getSharedPreferences(context!!.packageName, Context.MODE_PRIVATE)
 
     companion object {
         const val DATE = "日付"
@@ -60,7 +58,7 @@ class RecycleViewAdapter(
                 month = item.substring(5, 6)
             }
             //valueを取得する
-            val data = sharedPreferences.getString(item, "")
+            val data = sharedPreferences!!.getString(item, "")
             val gson = Gson()
             val type: Type = object : TypeToken<MutableMap<String, String>>() {}.type
             val map: MutableMap<String, String> = gson.fromJson(data, type)

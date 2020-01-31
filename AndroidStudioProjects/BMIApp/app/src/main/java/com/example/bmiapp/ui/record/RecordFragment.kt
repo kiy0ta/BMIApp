@@ -1,10 +1,8 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.bmiapp.ui.record
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +26,8 @@ class RecordFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        sharedPreferences =
+            context?.getSharedPreferences(context!!.packageName, Context.MODE_PRIVATE)
         return inflater.inflate(R.layout.fragment_record, container, false)
     }
 

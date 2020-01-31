@@ -1,14 +1,12 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.bmiapp.ui.input
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.os.Bundle
-import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +31,7 @@ class InputFragment : Fragment() {
     //bmi
     private var bmi: String = ""
     //sharedのkeyリスト
-    private var keyList: MutableList<String>? = null
+    private var keyList: MutableList<String> = mutableListOf()
     //同日の計測データの存在判定真理値
     private var isFirst = true
     //保存日の日付
@@ -58,8 +56,8 @@ class InputFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedPreferences = getDefaultSharedPreferences(requireContext())
-        keyList = mutableListOf()
+        sharedPreferences =
+            context?.getSharedPreferences(context!!.packageName, Context.MODE_PRIVATE)
         res = resources
         return inflater.inflate(R.layout.fragment_input, container, false)
     }
@@ -73,7 +71,7 @@ class InputFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //keyListにデータ詰める
-        keyList?.add(sharedPreferences?.all.toString())
+        keyList.add(sharedPreferences?.all.toString())
         //初回かどうか判定
         isFirst()
         if (isFirst) {
@@ -105,7 +103,7 @@ class InputFragment : Fragment() {
             //同日のデータが存在する場合、データを削除する
             if (isFirst) {
                 //リストから削除
-                keyList?.removeAll { it == strToday }
+                keyList.removeAll { it == strToday }
                 //sharedから削除
                 editor?.remove(strToday)
                 editor?.commit()
@@ -155,7 +153,7 @@ class InputFragment : Fragment() {
         //同日のデータが存在しない場合
         if (isFirst) {
             //保存日の日付をkeyに保存する
-            keyList?.add(strToday)
+            keyList.add(strToday)
         }
     }
 
@@ -195,7 +193,7 @@ class InputFragment : Fragment() {
         val today = Date()
         val sdf = SimpleDateFormat("yyyyMMdd")
         strToday = sdf.format(today)
-        for (date in this.keyList!!) {
+        for (date in this.keyList) {
             //同日のデータが存在する場合
             if (date == strToday) {
                 isFirst = false
@@ -213,7 +211,7 @@ class InputFragment : Fragment() {
         val sdf = SimpleDateFormat("yyyyMM")
         val sToday = sdf.format(today)
         val regex = Regex(sToday)
-        for (date in this!!.keyList!!) {
+        for (date in this.keyList) {
             //同月のデータが存在しない場合
             if (!date.contains(regex)) {
                 isFirstDataOfMonth = true
