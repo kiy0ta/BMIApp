@@ -28,7 +28,7 @@
                 android:layout_marginTop="0dp"
                 android:text="@string/title_record"
                 android:textColor="@color/color_black"
-                android:textSize="17dp" />
+                android:textSize="17sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -36,7 +36,7 @@
             android:id="@+id/title_under_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_gray"></View>
+            android:background="@color/color_gray" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

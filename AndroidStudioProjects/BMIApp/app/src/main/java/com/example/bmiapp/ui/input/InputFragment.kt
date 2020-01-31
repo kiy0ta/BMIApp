@@ -1,18 +1,21 @@
 package com.example.bmiapp.ui.input
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.bmiapp.R
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_input.*
+import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,26 +31,33 @@ class InputFragment : Fragment() {
     //bmi
     private var bmi: String = ""
     //sharedのkeyリスト
-    private lateinit var keyList: MutableList<String>
+    private var keyList: MutableList<String> = mutableListOf()
     //同日の計測データの存在判定真理値
     private var isFirst = true
     //保存日の日付
     private var strToday = ""
     //入力値の正誤判定真理値
     private var isCorrectValue = false
-    private lateinit var res: Resources
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
+    private var res: Resources? = null
+    private var sharedPreferences: SharedPreferences? = null
+    private var editor: SharedPreferences.Editor? = null
+
+    companion object {
+        const val DATE = "日付"
+        const val HEIGHT = "身長"
+        const val WEIGHT = "体重"
+        const val BMI = "BMI"
+        const val MESSAGE = "メッセージ"
+        const val ISFIRST = "初回判定"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        keyList = mutableListOf()
-        //keyListにデータ詰める
-        keyList.add(sharedPreferences.all.toString())
+        sharedPreferences =
+            context?.getSharedPreferences(context!!.packageName, Context.MODE_PRIVATE)
         res = resources
         return inflater.inflate(R.layout.fragment_input, container, false)
     }
@@ -60,9 +70,15 @@ class InputFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //keyListにデータ詰める
+        keyList.add(sharedPreferences?.all.toString())
         //初回かどうか判定
         isFirst()
-        editor = sharedPreferences.edit()
+        if (isFirst) {
+            //同日のデータを表示
+            showRecord()
+        }
+        editor = sharedPreferences?.edit()
         //BMI計算ボタン押下処理
         input_calc_button.setOnClickListener {
             //入力された値のバリデーションチェック
@@ -76,8 +92,8 @@ class InputFragment : Fragment() {
                 bmi = formatFirstDecimal(inputWeight / (inputHeight * inputHeight))
                 //計算結果を表示する
                 result_bmi.text = bmi
-                editor.putString("bmi", bmi)
-                editor.commit()
+                editor?.putString("bmi", bmi)
+                editor?.apply()
             }
         }
         //削除ボタン押下処理
@@ -89,8 +105,8 @@ class InputFragment : Fragment() {
                 //リストから削除
                 keyList.removeAll { it == strToday }
                 //sharedから削除
-                editor.remove(strToday)
-                editor.commit()
+                editor?.remove(strToday)
+                editor?.commit()
             }
             //画面初期化処理
             initData()
@@ -117,18 +133,23 @@ class InputFragment : Fragment() {
         if (result_message_free.text.toString() != null) {
             message = result_message_free.text.toString()
         }
+        //データをmapに保存
+        val map: MutableMap<String, String> = mutableMapOf()
+        map[DATE] = strToday
+        map[HEIGHT] = (height.text).toString()
+        map[WEIGHT] = (weight.text).toString()
+        map[BMI] = bmi
+        map[MESSAGE] = message
         if (isFirstDataOfMonth()) {
-            editor.putString(
-                strToday,
-                strToday + "," + (height.text).toString() + "," + (weight.text).toString() + "," + bmi + "," + message + "," + "first"
-            )
+            map[ISFIRST] = "first"
+
         } else {
-            editor.putString(
-                strToday,
-                strToday + "," + (height.text).toString() + "," + (weight.text).toString() + "," + bmi + "," + message + "," + "notFirst"
-            )
+            map[ISFIRST] = "notFirst"
         }
-        editor.commit()
+        val gson = Gson()
+        val jsonString: String = gson.toJson(map)
+        editor?.putString(strToday, jsonString)
+        editor?.commit()
         //同日のデータが存在しない場合
         if (isFirst) {
             //保存日の日付をkeyに保存する
@@ -149,7 +170,7 @@ class InputFragment : Fragment() {
     /**
      * ダイアログ生成メソッド
      */
-    private fun onCreateDialog(errorMessage: String): Dialog {
+    private fun onCreateDialog(errorMessage: String?): Dialog {
         // ダイアログ生成  AlertDialogのBuilderクラスを指定してインスタンス化する
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
         // 表示する文章設定
@@ -167,11 +188,12 @@ class InputFragment : Fragment() {
     /**
      * 同日のデータが存在するかチェックするメソッド
      */
+    @SuppressLint("SimpleDateFormat")
     private fun isFirst() {
-        var today = Date()
-        var sdf = SimpleDateFormat("yyyyMMdd")
+        val today = Date()
+        val sdf = SimpleDateFormat("yyyyMMdd")
         strToday = sdf.format(today)
-        for (date in keyList) {
+        for (date in this.keyList) {
             //同日のデータが存在する場合
             if (date == strToday) {
                 isFirst = false
@@ -182,13 +204,14 @@ class InputFragment : Fragment() {
     /**
      * 同月のデータが存在するかチェックするメソッド
      */
+    @SuppressLint("SimpleDateFormat")
     private fun isFirstDataOfMonth(): Boolean {
         var isFirstDataOfMonth = false
-        var today = Date()
-        var sdf = SimpleDateFormat("yyyyMM")
-        var sToday = sdf.format(today)
+        val today = Date()
+        val sdf = SimpleDateFormat("yyyyMM")
+        val sToday = sdf.format(today)
         val regex = Regex(sToday)
-        for (date in keyList) {
+        for (date in this.keyList) {
             //同月のデータが存在しない場合
             if (!date.contains(regex)) {
                 isFirstDataOfMonth = true
@@ -201,32 +224,32 @@ class InputFragment : Fragment() {
      * 入力された値が適切かどうかチェックするメソッド
      */
     private fun checkInputValue(): Boolean {
-        var strHeight = (height.text).toString()
-        var strWeight = (weight.text).toString()
+        val strHeight = (height.text).toString()
+        val strWeight = (weight.text).toString()
         if (strHeight == null || strHeight.isEmpty()) {
-            onCreateDialog(res.getString(R.string.error_01)).show()
+            onCreateDialog(res?.getString(R.string.error_01)).show()
             return false
         }
         if (strWeight == null || strWeight.isEmpty()) {
-            onCreateDialog(res.getString(R.string.error_01)).show()
+            onCreateDialog(res?.getString(R.string.error_01)).show()
             return false
         }
-        var floatHeight = (height.text).toString().toFloat()
-        var floatWeight = (weight.text).toString().toFloat()
-        var textForValidate = formatFirstDecimal(floatHeight)
-        var textForValidate1 = formatInteger(floatHeight)
-        var textForValidate2 = formatFirstDecimal(floatWeight)
-        var textForValidate3 = formatInteger(floatWeight)
+        val floatHeight = (height.text).toString().toFloat()
+        val floatWeight = (weight.text).toString().toFloat()
+        val textForValidate = formatFirstDecimal(floatHeight)
+        val textForValidate1 = formatInteger(floatHeight)
+        val textForValidate2 = formatFirstDecimal(floatWeight)
+        val textForValidate3 = formatInteger(floatWeight)
         if (strHeight != textForValidate
             && strHeight != textForValidate1
         ) {
-            onCreateDialog(res.getString(R.string.error_02)).show()
+            onCreateDialog(res?.getString(R.string.error_02)).show()
             return false
         }
         if (strWeight != textForValidate2
             && strWeight != textForValidate3
         ) {
-            onCreateDialog(res.getString(R.string.error_02)).show()
+            onCreateDialog(res?.getString(R.string.error_02)).show()
             return false
         }
         return true
@@ -248,5 +271,22 @@ class InputFragment : Fragment() {
         return String.format(
             "%1$.0f", value
         )
+    }
+
+    /**
+     * 同日のデータを表示するメソッド
+     */
+    private fun showRecord() {
+        val data = sharedPreferences!!.getString(strToday, "")
+        val gson = Gson()
+        val type: Type = object : TypeToken<MutableMap<String, String>>() {}.type
+        try {
+            val map: MutableMap<String, String> = gson.fromJson(data, type)
+            height.setText(map[HEIGHT])
+            weight.setText(map[WEIGHT])
+            result_bmi.text = map[BMI]
+            result_message_free.setText(map[MESSAGE])
+        } catch (e: IllegalStateException) {
+        }
     }
 }

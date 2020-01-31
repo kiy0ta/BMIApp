@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
@@ -29,7 +30,7 @@
                 android:layout_marginTop="0dp"
                 android:text="@string/title_input"
                 android:textColor="@color/color_black"
-                android:textSize="17dp" />
+                android:textSize="17sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -37,7 +38,7 @@
             android:id="@+id/title_under_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_gray"></View>
+            android:background="@color/color_gray" />
 
     </LinearLayout>
 
@@ -50,8 +51,8 @@
         android:text="@string/input_description"
         android:textAlignment="center"
         android:textColor="@color/color_black"
-        android:textSize="16dp"
-        android:textStyle="bold"></TextView>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/input_linear_height"
@@ -65,28 +66,30 @@
             android:id="@+id/input_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/input_height"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="16dp"></TextView>
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/height"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:background="@drawable/shape_edit_text"
-            android:textSize="22dp"></EditText>
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/input_cm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:text="@string/cm"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="16dp"></TextView>
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,28 +104,30 @@
             android:id="@+id/input_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/input_weight"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="16dp"></TextView>
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/weight"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:background="@drawable/shape_edit_text"
-            android:textSize="22dp"></EditText>
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/input_kg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:text="@string/kg"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="16dp"></TextView>
+            android:textSize="16sp" />
     </LinearLayout>
 
     <Button
@@ -133,14 +138,14 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_button"
         android:text="@string/input_calc_button"
-        android:textSize="22dp"></Button>
+        android:textSize="22sp" />
 
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="@color/color_gray"></View>
+        android:background="@color/color_gray" />
 
     <LinearLayout
         android:id="@+id/input_linear_result"
@@ -153,29 +158,32 @@
             android:id="@+id/input_result_message_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:text="@string/result_message_1"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="20dp"></TextView>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/result_bmi"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/input_result_message_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:text="@string/result_message_2"
             android:textAlignment="center"
             android:textColor="@color/color_black"
-            android:textSize="20dp"></TextView>
+            android:textSize="20sp" />
     </LinearLayout>
 
     <EditText
@@ -188,7 +196,7 @@
         android:background="@drawable/shape_edit_text"
         android:hint="@string/hint_message"
         android:textColorHint="@color/color_gray"
-        android:textSize="16dp"></EditText>
+        android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/input_linear_button"
@@ -205,13 +213,15 @@
             android:id="@+id/delete_button"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:background="@drawable/shape_button"
             android:text="@string/delete"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/save_button"
@@ -220,9 +230,10 @@
             android:layout_weight="1"
             android:background="@drawable/shape_button"
             android:text="@string/save"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/delete_button"></Button>
+            app:layout_constraintStart_toStartOf="@id/delete_button"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

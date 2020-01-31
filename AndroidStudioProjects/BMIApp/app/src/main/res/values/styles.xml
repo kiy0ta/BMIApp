@@ -20,7 +20,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="ToolBarStyle" parent="Theme.AppCompat">
         <item name="actionMenuTextColor">@color/color_white</item>
@@ -30,6 +30,6 @@
         <!-- ToolBarのタイトルテキスト色 -->
         <item name="android:textColorPrimary">@color/color_white</item>
         <!-- iconの色 -->
-        <item name="colorControlNormal">@color/color_white</item>
+        <item name="colorControlNormal"><![CDATA[@color/color_white]]></item>
     </style>
 </resources>
